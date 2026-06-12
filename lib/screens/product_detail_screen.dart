@@ -362,16 +362,9 @@ class _RatingStars extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: List.generate(5, (index) {
         final starValue = index + 1;
-        final IconData icon;
-        if (rating >= starValue - 0.25) {
-          icon = SolarIconsOutline.star;
-        } else if (rating >= starValue - 0.75) {
-          icon = SolarIconsOutline.star;
-        } else {
-          icon = SolarIconsOutline.starsLine;
-        }
+        final isEmpty = rating < starValue - 0.75;
         return Icon(
-          icon,
+          isEmpty ? SolarIconsOutline.shieldStar : SolarIconsBold.shieldStar,
           size: size,
           color: theme.colorScheme.onSurface,
         );

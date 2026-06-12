@@ -93,7 +93,7 @@ class ProductCard extends StatelessWidget {
                   Row(
                     children: [
                       Icon(
-                        SolarIconsOutline.star,
+                        SolarIconsBold.shieldStar,
                         size: 16,
                         color: theme.colorScheme.onSurface,
                       ),
