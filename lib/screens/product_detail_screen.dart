@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 import '../models/product.dart';
 import '../providers/cart_provider.dart';
@@ -104,7 +105,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             errorWidget: (context, url, error) => Container(
                               color: theme.colorScheme.surface,
                               child: Icon(
-                                Icons.image_not_supported_outlined,
+                                SolarIconsOutline.gallery,
                                 size: 64,
                                 color: theme.colorScheme.onSurface.withAlpha(100),
                               ),
@@ -280,7 +281,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     Expanded(
                       child: ElevatedButton.icon(
                         onPressed: product.inStock ? () => _onAddToCart(context) : null,
-                        icon: const Icon(Icons.shopping_bag_outlined),
+                        icon: const Icon(SolarIconsOutline.bag),
                         label: Text(
                           product.inStock ? 'Add to Cart' : 'Out of Stock',
                         ),
@@ -363,11 +364,11 @@ class _RatingStars extends StatelessWidget {
         final starValue = index + 1;
         final IconData icon;
         if (rating >= starValue - 0.25) {
-          icon = Icons.star;
+          icon = SolarIconsOutline.star;
         } else if (rating >= starValue - 0.75) {
-          icon = Icons.star_half;
+          icon = SolarIconsOutline.star;
         } else {
-          icon = Icons.star_border;
+          icon = SolarIconsOutline.starsLine;
         }
         return Icon(
           icon,
@@ -481,7 +482,7 @@ class _ColorSelector extends StatelessWidget {
             ),
             child: isSelected
                 ? Icon(
-                    Icons.check,
+                    SolarIconsOutline.checkCircle,
                     size: 20,
                     color: option.color == Colors.black
                         ? theme.colorScheme.onPrimary
@@ -593,7 +594,7 @@ class _FavoriteButton extends StatelessWidget {
           ),
         ),
         child: Icon(
-          isFavorite ? Icons.favorite : Icons.favorite_border,
+          isFavorite ? SolarIconsOutline.heart : SolarIconsOutline.heart,
           color: isFavorite
               ? theme.colorScheme.onPrimary
               : theme.colorScheme.onSurface,

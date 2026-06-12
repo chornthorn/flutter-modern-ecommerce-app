@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -43,7 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         elevation: 0,
         leading: IconButton(
           onPressed: _goToLogin,
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(SolarIconsOutline.altArrowLeft),
         ),
       ),
       body: SafeArea(
@@ -77,7 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   textInputAction: TextInputAction.next,
                   decoration: const InputDecoration(
                     hintText: 'Full Name',
-                    prefixIcon: Icon(Icons.person_outline),
+                    prefixIcon: Icon(SolarIconsOutline.user),
                   ),
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
@@ -93,7 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   textInputAction: TextInputAction.next,
                   decoration: const InputDecoration(
                     hintText: 'Email',
-                    prefixIcon: Icon(Icons.email_outlined),
+                    prefixIcon: Icon(SolarIconsOutline.letter),
                   ),
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
@@ -112,7 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     hintText: 'Password',
-                    prefixIcon: const Icon(Icons.lock_outlined),
+                    prefixIcon: const Icon(SolarIconsOutline.lock),
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
@@ -121,8 +122,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                       icon: Icon(
                         _obscurePassword
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
+                            ? SolarIconsOutline.eye
+                            : SolarIconsOutline.eyeClosed,
                       ),
                     ),
                   ),
@@ -143,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     hintText: 'Confirm Password',
-                    prefixIcon: const Icon(Icons.lock_outline),
+                    prefixIcon: const Icon(SolarIconsOutline.lock),
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
@@ -152,8 +153,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                       icon: Icon(
                         _obscureConfirmPassword
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
+                            ? SolarIconsOutline.eye
+                            : SolarIconsOutline.eyeClosed,
                       ),
                     ),
                   ),

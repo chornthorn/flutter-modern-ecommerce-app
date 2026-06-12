@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 class OrderSuccessScreen extends StatelessWidget {
   const OrderSuccessScreen({super.key});
@@ -23,7 +24,7 @@ class OrderSuccessScreen extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
-                  Icons.check,
+                  SolarIconsOutline.checkCircle,
                   color: Colors.white,
                   size: 56,
                 ),

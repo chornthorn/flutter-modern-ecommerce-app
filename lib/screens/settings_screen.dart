@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -59,7 +60,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Icon(
-                        Icons.notifications_outlined,
+                        SolarIconsOutline.bell,
                         size: 20,
                         color: theme.colorScheme.onSurface.withAlpha(180),
                       ),
@@ -143,7 +144,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Icon(
-                        _darkMode ? Icons.dark_mode : Icons.light_mode_outlined,
+                        _darkMode ? SolarIconsOutline.moon : SolarIconsOutline.sun,
                         size: 20,
                         color: theme.colorScheme.onSurface.withAlpha(180),
                       ),
@@ -161,7 +162,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Icon(
-                        Icons.language_outlined,
+                        SolarIconsOutline.global,
                         size: 20,
                         color: theme.colorScheme.onSurface.withAlpha(180),
                       ),
@@ -173,7 +174,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         color: theme.colorScheme.onSurface.withAlpha(150),
                       ),
                     ),
-                    trailing: const Icon(Icons.chevron_right),
+                    trailing: const Icon(SolarIconsOutline.altArrowRight),
                     onTap: () => _showLanguagePicker(theme),
                   ),
                 ],
@@ -191,19 +192,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Column(
                 children: [
                   _SettingsListTile(
-                    icon: Icons.person_outline,
+                    icon: SolarIconsOutline.user,
                     title: 'Edit Profile',
                     onTap: () {},
                   ),
                   const Divider(height: 1, indent: 16, endIndent: 16),
                   _SettingsListTile(
-                    icon: Icons.lock_outline,
+                    icon: SolarIconsOutline.lock,
                     title: 'Change Password',
                     onTap: () {},
                   ),
                   const Divider(height: 1, indent: 16, endIndent: 16),
                   _SettingsListTile(
-                    icon: Icons.privacy_tip_outlined,
+                    icon: SolarIconsOutline.shield,
                     title: 'Privacy Policy',
                     onTap: () {},
                   ),
@@ -222,13 +223,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Column(
                 children: [
                   _SettingsListTile(
-                    icon: Icons.help_outline,
+                    icon: SolarIconsOutline.help,
                     title: 'Help Center',
                     onTap: () {},
                   ),
                   const Divider(height: 1, indent: 16, endIndent: 16),
                   _SettingsListTile(
-                    icon: Icons.description_outlined,
+                    icon: SolarIconsOutline.documentText,
                     title: 'Terms of Service',
                     onTap: () {},
                   ),
@@ -238,7 +239,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const SizedBox(height: 24),
             Card(
               child: _SettingsListTile(
-                icon: Icons.logout,
+                icon: SolarIconsOutline.logout,
                 title: 'Logout',
                 textColor: theme.colorScheme.error,
                 iconColor: theme.colorScheme.error,
@@ -281,7 +282,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   return ListTile(
                     title: Text(language),
                     trailing: isSelected
-                        ? const Icon(Icons.check, color: Colors.black)
+                        ? const Icon(SolarIconsOutline.checkCircle, color: Colors.black)
                         : null,
                     onTap: () {
                       setState(() {
@@ -341,7 +342,7 @@ class _SettingsListTile extends StatelessWidget {
         ),
       ),
       trailing: Icon(
-        Icons.chevron_right,
+        SolarIconsOutline.altArrowRight,
         color: theme.colorScheme.onSurface.withAlpha(120),
       ),
       onTap: onTap,

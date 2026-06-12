@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 import '../models/order.dart';
 
@@ -80,7 +81,7 @@ class OrderDetailScreen extends StatelessWidget {
                             color: const Color(0xFFF2F2F2),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: const Icon(Icons.shopping_bag_outlined),
+                          child: const Icon(SolarIconsOutline.bag),
                         ),
                         const SizedBox(width: 12),
                         Expanded(
@@ -222,25 +223,25 @@ class _StatusTimeline extends StatelessWidget {
       _TimelineStep(
         title: 'Ordered',
         subtitle: 'Order placed successfully',
-        icon: Icons.receipt_outlined,
+        icon: SolarIconsOutline.documentText,
         time: orderDate.copyWith(hour: 9, minute: 0),
       ),
       _TimelineStep(
         title: 'Processing',
         subtitle: 'Order is being prepared',
-        icon: Icons.inventory_2_outlined,
+        icon: SolarIconsOutline.box,
         time: orderDate.copyWith(hour: 14, minute: 30),
       ),
       _TimelineStep(
         title: 'Shipped',
         subtitle: 'Order is on the way',
-        icon: Icons.local_shipping_outlined,
+        icon: SolarIconsOutline.delivery,
         time: orderDate.add(const Duration(days: 1)).copyWith(hour: 8, minute: 15),
       ),
       _TimelineStep(
         title: 'Delivered',
         subtitle: 'Order has been delivered',
-        icon: Icons.check_circle_outline,
+        icon: SolarIconsOutline.checkCircle,
         time: orderDate.add(const Duration(days: 2)).copyWith(hour: 16, minute: 45),
       ),
     ];

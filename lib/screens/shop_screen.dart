@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 import '../models/category.dart';
 import '../models/product.dart';
@@ -79,10 +80,10 @@ class _ShopScreenState extends State<ShopScreen> {
                       onChanged: productProvider.setSearchQuery,
                       decoration: InputDecoration(
                         hintText: 'Search products...',
-                        prefixIcon: const Icon(Icons.search),
+                        prefixIcon: const Icon(SolarIconsOutline.magnifier),
                         suffixIcon: value.text.isNotEmpty
                             ? IconButton(
-                                icon: const Icon(Icons.clear),
+                                icon: const Icon(SolarIconsOutline.closeSquare),
                                 onPressed: () {
                                   _searchController.clear();
                                   productProvider.setSearchQuery('');
@@ -169,7 +170,7 @@ class _ShopScreenState extends State<ShopScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.search_off,
+                        SolarIconsOutline.magnifier,
                         size: 64,
                         color: theme.colorScheme.onSurface.withAlpha(100),
                       ),
@@ -268,7 +269,7 @@ class _SortDropdown extends StatelessWidget {
       child: DropdownButtonHideUnderline(
         child: DropdownButton<_SortOption>(
           value: value,
-          icon: const Icon(Icons.keyboard_arrow_down, size: 18),
+          icon: const Icon(SolarIconsOutline.altArrowDown, size: 18),
           style: theme.textTheme.bodySmall,
           borderRadius: BorderRadius.circular(12),
           items: _SortOption.values.map((option) {
@@ -348,14 +349,14 @@ class _CategoryGridItem extends StatelessWidget {
 
   IconData _parseIcon(String iconName) {
     return switch (iconName) {
-      'phone_android' => Icons.phone_android,
-      'checkroom' => Icons.checkroom,
-      'chair' => Icons.chair,
-      'sports_basketball' => Icons.sports_basketball,
-      'menu_book' => Icons.menu_book,
-      'brush' => Icons.brush,
-      'apps' => Icons.apps,
-      _ => Icons.category,
+      'phone_android' => SolarIconsOutline.smartphone,
+      'checkroom' => SolarIconsOutline.hanger,
+      'chair' => SolarIconsOutline.chair,
+      'sports_basketball' => SolarIconsOutline.basketball,
+      'menu_book' => SolarIconsOutline.book,
+      'brush' => SolarIconsOutline.palette,
+      'apps' => SolarIconsOutline.widget,
+      _ => SolarIconsOutline.widget,
     };
   }
 }
@@ -401,7 +402,7 @@ class _PromoBanner extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             child: const Icon(
-              Icons.arrow_forward,
+              SolarIconsOutline.altArrowRight,
               color: Colors.white,
             ),
           ),

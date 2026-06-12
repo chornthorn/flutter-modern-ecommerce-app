@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 class PaymentMethodsScreen extends StatelessWidget {
   const PaymentMethodsScreen({super.key});
@@ -101,7 +102,7 @@ class PaymentMethodsScreen extends StatelessWidget {
                           IconButton(
                             onPressed: () {},
                             icon: Icon(
-                              Icons.more_vert,
+                              SolarIconsOutline.menuDots,
                               color: theme.colorScheme.onSurface.withAlpha(120),
                             ),
                           ),
@@ -120,7 +121,7 @@ class PaymentMethodsScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: () {},
-                icon: const Icon(Icons.add),
+                icon: const Icon(SolarIconsOutline.plus),
                 label: const Text('Add New Card'),
               ),
             ),
@@ -133,13 +134,13 @@ class PaymentMethodsScreen extends StatelessWidget {
   IconData _cardIcon(String type) {
     switch (type) {
       case 'Visa':
-        return Icons.credit_card;
+        return SolarIconsOutline.card;
       case 'Mastercard':
-        return Icons.credit_card;
+        return SolarIconsOutline.card;
       case 'Amex':
-        return Icons.credit_card;
+        return SolarIconsOutline.card;
       default:
-        return Icons.credit_card;
+        return SolarIconsOutline.card;
     }
   }
 }

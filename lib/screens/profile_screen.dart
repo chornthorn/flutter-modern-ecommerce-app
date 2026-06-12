@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -28,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () => Navigator.of(context).pushNamed('/settings'),
-                    icon: const Icon(Icons.settings_outlined),
+                    icon: const Icon(SolarIconsOutline.settings),
                   ),
                 ],
               ),
@@ -46,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
                       radius: 48,
                       backgroundColor: Colors.white,
                       child: Icon(
-                        Icons.person,
+                        SolarIconsOutline.user,
                         size: 48,
                         color: theme.colorScheme.onSurface,
                       ),
@@ -116,25 +117,25 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     _ProfileListTile(
-                      icon: Icons.shopping_bag_outlined,
+                      icon: SolarIconsOutline.bag,
                       title: 'My Orders',
                       onTap: () => Navigator.of(context).pushNamed('/orders'),
                     ),
                     const Divider(height: 1, indent: 16, endIndent: 16),
                     _ProfileListTile(
-                      icon: Icons.location_on_outlined,
+                      icon: SolarIconsOutline.mapPoint,
                       title: 'Addresses',
                       onTap: () => Navigator.of(context).pushNamed('/addresses'),
                     ),
                     const Divider(height: 1, indent: 16, endIndent: 16),
                     _ProfileListTile(
-                      icon: Icons.payment_outlined,
+                      icon: SolarIconsOutline.wallet,
                       title: 'Payment Methods',
                       onTap: () => Navigator.of(context).pushNamed('/payment-methods'),
                     ),
                     const Divider(height: 1, indent: 16, endIndent: 16),
                     _ProfileListTile(
-                      icon: Icons.settings_outlined,
+                      icon: SolarIconsOutline.settings,
                       title: 'Settings',
                       onTap: () => Navigator.of(context).pushNamed('/settings'),
                     ),
@@ -153,7 +154,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     _ProfileListTile(
-                      icon: Icons.help_outline,
+                      icon: SolarIconsOutline.help,
                       title: 'Help Center',
                       onTap: () {},
                     ),
@@ -163,7 +164,7 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(height: 24),
               Card(
                 child: _ProfileListTile(
-                  icon: Icons.logout,
+                  icon: SolarIconsOutline.logout,
                   title: 'Logout',
                   textColor: theme.colorScheme.error,
                   iconColor: theme.colorScheme.error,
@@ -267,7 +268,7 @@ class _ProfileListTile extends StatelessWidget {
         ),
       ),
       trailing: Icon(
-        Icons.chevron_right,
+        SolarIconsOutline.altArrowRight,
         color: theme.colorScheme.onSurface.withAlpha(120),
       ),
       onTap: onTap,

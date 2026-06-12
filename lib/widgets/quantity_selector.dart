@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 class QuantitySelector extends StatelessWidget {
   final int quantity;
@@ -27,7 +28,7 @@ class QuantitySelector extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           _QuantityButton(
-            icon: Icons.remove,
+            icon: SolarIconsOutline.minus,
             onPressed: quantity > min ? () => onChanged(quantity - 1) : null,
           ),
           Padding(
@@ -40,7 +41,7 @@ class QuantitySelector extends StatelessWidget {
             ),
           ),
           _QuantityButton(
-            icon: Icons.add,
+            icon: SolarIconsOutline.plus,
             onPressed: quantity < max ? () => onChanged(quantity + 1) : null,
           ),
         ],

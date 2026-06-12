@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 import '../providers/product_provider.dart';
 import '../widgets/cart_badge.dart';
@@ -57,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                 radius: 22,
                 backgroundColor: const Color(0xFFF2F2F2),
                 child: Icon(
-                  Icons.person_outline,
+                  SolarIconsOutline.user,
                   color: theme.colorScheme.onSurface,
                 ),
               ),
@@ -254,7 +255,7 @@ class _HeroBanner extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             child: const Icon(
-              Icons.shopping_bag_outlined,
+              SolarIconsOutline.bag,
               color: Colors.white,
               size: 36,
             ),
@@ -291,7 +292,7 @@ class _PromoStrip extends StatelessWidget {
               borderRadius: BorderRadius.circular(14),
             ),
             child: Icon(
-              Icons.local_shipping_outlined,
+              SolarIconsOutline.delivery,
               color: theme.colorScheme.onSurface,
             ),
           ),
@@ -317,7 +318,7 @@ class _PromoStrip extends StatelessWidget {
             ),
           ),
           Icon(
-            Icons.arrow_forward_ios,
+            SolarIconsOutline.altArrowRight,
             size: 16,
             color: theme.colorScheme.onSurface.withAlpha(140),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 import '../models/category.dart';
 import '../models/product.dart';
@@ -111,10 +112,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     onChanged: productProvider.setSearchQuery,
                     decoration: InputDecoration(
                       hintText: 'Search products...',
-                      prefixIcon: const Icon(Icons.search),
+                      prefixIcon: const Icon(SolarIconsOutline.magnifier),
                       suffixIcon: value.text.isNotEmpty
                           ? IconButton(
-                              icon: const Icon(Icons.clear),
+                              icon: const Icon(SolarIconsOutline.closeSquare),
                               onPressed: () => _clearFilters(productProvider),
                             )
                           : null,
@@ -180,7 +181,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                         value: _sortOption,
                         dropdownColor: theme.colorScheme.primary,
                         icon: Icon(
-                          Icons.keyboard_arrow_down,
+                          SolarIconsOutline.altArrowDown,
                           color: theme.colorScheme.onPrimary,
                           size: 18,
                         ),
@@ -230,7 +231,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.search_off_outlined,
+                      SolarIconsOutline.magnifier,
                       size: 64,
                       color: theme.colorScheme.onSurface.withAlpha(100),
                     ),
@@ -253,7 +254,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                         selectedCategoryId != null)
                       ElevatedButton.icon(
                         onPressed: () => _clearFilters(productProvider),
-                        icon: const Icon(Icons.clear_all),
+                        icon: const Icon(SolarIconsOutline.listCross),
                         label: const Text('Clear filters'),
                       ),
                   ],

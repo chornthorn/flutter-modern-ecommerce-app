@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 import '../models/product.dart';
 import '../providers/cart_provider.dart';
@@ -55,7 +56,7 @@ class ProductCard extends StatelessWidget {
                         errorWidget: (context, url, error) => Container(
                           color: theme.colorScheme.surface,
                           child: Icon(
-                            Icons.image_not_supported_outlined,
+                            SolarIconsOutline.gallery,
                             color: theme.colorScheme.onSurface.withAlpha(100),
                           ),
                         ),
@@ -92,7 +93,7 @@ class ProductCard extends StatelessWidget {
                   Row(
                     children: [
                       Icon(
-                        Icons.star,
+                        SolarIconsOutline.star,
                         size: 16,
                         color: theme.colorScheme.onSurface,
                       ),
@@ -179,7 +180,7 @@ class _FavoriteButton extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(6),
           child: Icon(
-            isFavorite ? Icons.favorite : Icons.favorite_border,
+            isFavorite ? SolarIconsOutline.heart : SolarIconsOutline.heart,
             size: 18,
             color: isFavorite ? theme.colorScheme.onSurface : theme.colorScheme.onSurface.withAlpha(180),
           ),
@@ -207,7 +208,7 @@ class _AddToCartButton extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: Icon(
-            Icons.add_shopping_cart_outlined,
+            SolarIconsOutline.cartPlus,
             size: 18,
             color: onPressed != null ? theme.colorScheme.onPrimary : theme.colorScheme.onSurface.withAlpha(100),
           ),

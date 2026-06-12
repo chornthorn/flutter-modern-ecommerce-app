@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 import '../providers/cart_provider.dart';
 import '../widgets/quantity_selector.dart';
@@ -64,7 +65,7 @@ class CartScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: Icon(
-                              Icons.delete_outline,
+                              SolarIconsOutline.trashBinMinimalistic,
                               color: theme.colorScheme.onError,
                             ),
                           ),
@@ -130,7 +131,7 @@ class CartScreen extends StatelessWidget {
                                       ),
                                       IconButton(
                                         icon: Icon(
-                                          Icons.delete_outline,
+                                          SolarIconsOutline.trashBinMinimalistic,
                                           color: theme.colorScheme.error,
                                         ),
                                         onPressed: () {
@@ -179,7 +180,7 @@ class _EmptyCart extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Icons.shopping_bag_outlined,
+              SolarIconsOutline.bag,
               size: 80,
               color: theme.colorScheme.onSurface.withAlpha(100),
             ),

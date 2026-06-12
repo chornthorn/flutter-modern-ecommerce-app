@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 import '../providers/bottom_nav_provider.dart';
 import 'cart_screen.dart';
@@ -20,11 +21,11 @@ class MainScreen extends StatelessWidget {
   ];
 
   static const List<_NavItem> _navItems = [
-    _NavItem(icon: Icons.home_outlined, activeIcon: Icons.home, label: 'Home'),
-    _NavItem(icon: Icons.storefront_outlined, activeIcon: Icons.storefront, label: 'Shop'),
-    _NavItem(icon: Icons.favorite_outline, activeIcon: Icons.favorite, label: 'Favorites'),
-    _NavItem(icon: Icons.shopping_cart_outlined, activeIcon: Icons.shopping_cart, label: 'Cart'),
-    _NavItem(icon: Icons.person_outline, activeIcon: Icons.person, label: 'Profile'),
+    _NavItem(icon: SolarIconsOutline.home, activeIcon: SolarIconsOutline.home, label: 'Home'),
+    _NavItem(icon: SolarIconsOutline.shop, activeIcon: SolarIconsOutline.shop, label: 'Shop'),
+    _NavItem(icon: SolarIconsOutline.heart, activeIcon: SolarIconsOutline.heart, label: 'Favorites'),
+    _NavItem(icon: SolarIconsOutline.cart, activeIcon: SolarIconsOutline.cart, label: 'Cart'),
+    _NavItem(icon: SolarIconsOutline.user, activeIcon: SolarIconsOutline.user, label: 'Profile'),
   ];
 
   @override

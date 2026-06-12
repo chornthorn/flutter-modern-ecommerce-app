@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 /// A minimal, rounded search input.
 ///
@@ -43,7 +44,7 @@ class AppSearchBar extends StatelessWidget {
         hintText: hintText ?? 'Search products...',
         isDense: true,
         prefixIcon: Icon(
-          Icons.search,
+          SolarIconsOutline.magnifier,
           color: theme.colorScheme.onSurface.withAlpha(120),
         ),
         suffixIcon: ValueListenableBuilder<TextEditingValue>(
@@ -52,7 +53,7 @@ class AppSearchBar extends StatelessWidget {
             if (value.text.isEmpty) return const SizedBox.shrink();
             return IconButton(
               icon: Icon(
-                Icons.clear,
+                SolarIconsOutline.closeSquare,
                 color: theme.colorScheme.onSurface.withAlpha(160),
               ),
               onPressed: () {

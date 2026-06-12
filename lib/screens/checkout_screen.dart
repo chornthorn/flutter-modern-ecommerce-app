@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 import '../providers/cart_provider.dart';
 
@@ -94,7 +95,7 @@ class CheckoutScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: const Icon(
-                            Icons.credit_card,
+                            SolarIconsOutline.card,
                             color: Colors.white,
                             size: 20,
                           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
@@ -80,7 +81,7 @@ class OrdersScreen extends StatelessWidget {
                           Row(
                             children: [
                               Icon(
-                                Icons.calendar_today_outlined,
+                                SolarIconsOutline.calendar,
                                 size: 16,
                                 color: theme.colorScheme.onSurface.withAlpha(120),
                               ),
@@ -97,7 +98,7 @@ class OrdersScreen extends StatelessWidget {
                           Row(
                             children: [
                               Icon(
-                                Icons.shopping_bag_outlined,
+                                SolarIconsOutline.bag,
                                 size: 16,
                                 color: theme.colorScheme.onSurface.withAlpha(120),
                               ),
@@ -144,7 +145,7 @@ class OrdersScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
-            Icons.receipt_long_outlined,
+            SolarIconsOutline.billList,
             size: 80,
             color: theme.colorScheme.onSurface.withAlpha(100),
           ),

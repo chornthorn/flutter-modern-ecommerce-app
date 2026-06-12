@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 import '../models/category.dart';
 
@@ -54,14 +55,14 @@ class CategoryChip extends StatelessWidget {
 
   IconData _parseIcon(String iconName) {
     return switch (iconName) {
-      'phone_android' => Icons.phone_android,
-      'checkroom' => Icons.checkroom,
-      'chair' => Icons.chair,
-      'sports_basketball' => Icons.sports_basketball,
-      'menu_book' => Icons.menu_book,
-      'brush' => Icons.brush,
-      'apps' => Icons.apps,
-      _ => Icons.category,
+      'phone_android' => SolarIconsOutline.smartphone,
+      'checkroom' => SolarIconsOutline.hanger,
+      'chair' => SolarIconsOutline.chair,
+      'sports_basketball' => SolarIconsOutline.basketball,
+      'menu_book' => SolarIconsOutline.book,
+      'brush' => SolarIconsOutline.palette,
+      'apps' => SolarIconsOutline.widget,
+      _ => SolarIconsOutline.widget,
     };
   }
 }

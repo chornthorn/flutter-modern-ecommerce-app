@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 import 'forgot_password_screen.dart';
 import 'signup_screen.dart';
@@ -105,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 if (!_showEmailForm)
                   OutlinedButton.icon(
                     onPressed: () => setState(() => _showEmailForm = true),
-                    icon: const Icon(Icons.email_outlined, size: 20),
+                    icon: const Icon(SolarIconsOutline.letter, size: 20),
                     label: const Text('Continue with Email'),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Colors.black,
@@ -128,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
                             hintText: 'Email',
-                            prefixIcon: Icon(Icons.email_outlined),
+                            prefixIcon: Icon(SolarIconsOutline.letter),
                           ),
                           validator: (value) {
                             if (value == null || value.trim().isEmpty) {
@@ -147,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           textInputAction: TextInputAction.done,
                           decoration: InputDecoration(
                             hintText: 'Password',
-                            prefixIcon: const Icon(Icons.lock_outlined),
+                            prefixIcon: const Icon(SolarIconsOutline.lock),
                             suffixIcon: IconButton(
                               onPressed: () {
                                 setState(() {
@@ -156,8 +157,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                               icon: Icon(
                                 _obscurePassword
-                                    ? Icons.visibility_outlined
-                                    : Icons.visibility_off_outlined,
+                                    ? SolarIconsOutline.eye
+                                    : SolarIconsOutline.eyeClosed
                               ),
                             ),
                           ),
@@ -308,7 +309,7 @@ class _AppLogo extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
         ),
         child: const Icon(
-          Icons.shopping_bag_outlined,
+          SolarIconsOutline.bag,
           size: 40,
           color: Colors.white,
         ),

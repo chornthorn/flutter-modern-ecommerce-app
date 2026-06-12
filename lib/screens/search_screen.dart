@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 import '../providers/product_provider.dart';
 import '../widgets/product_card.dart';
@@ -53,7 +54,7 @@ class _SearchScreenState extends State<SearchScreen> {
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(SolarIconsOutline.altArrowLeft),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: AppSearchBar(
@@ -190,7 +191,7 @@ class _RecentChip extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
-                Icons.history,
+                SolarIconsOutline.history,
                 size: 16,
                 color: theme.colorScheme.onSurface.withAlpha(140),
               ),
@@ -203,7 +204,7 @@ class _RecentChip extends StatelessWidget {
               GestureDetector(
                 onTap: onDeleted,
                 child: Icon(
-                  Icons.close,
+                  SolarIconsOutline.closeSquare,
                   size: 16,
                   color: theme.colorScheme.onSurface.withAlpha(140),
                 ),
@@ -230,7 +231,7 @@ class _EmptySearchState extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Icons.search,
+              SolarIconsOutline.magnifier,
               size: 64,
               color: theme.colorScheme.onSurface.withAlpha(60),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 import '../models/product.dart';
 import '../providers/cart_provider.dart';
@@ -40,7 +41,7 @@ class FavoritesScreen extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () => Navigator.of(context).pushNamed('/cart'),
-                          icon: const Icon(Icons.shopping_cart_outlined),
+                          icon: const Icon(SolarIconsOutline.cart),
                           color: theme.colorScheme.onSurface,
                         ),
                       ],
@@ -52,7 +53,7 @@ class FavoritesScreen extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton.icon(
                         onPressed: () => _addAllToCart(context, favoriteProducts),
-                        icon: const Icon(Icons.add_shopping_cart_outlined),
+                        icon: const Icon(SolarIconsOutline.cartPlus),
                         label: const Text('Add all to cart'),
                       ),
                     ),
@@ -123,7 +124,7 @@ class _EmptyState extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
-              Icons.favorite_border,
+              SolarIconsOutline.heart,
               size: 80,
               color: theme.colorScheme.onSurface.withAlpha(100),
             ),

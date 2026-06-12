@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 class AddressesScreen extends StatelessWidget {
   const AddressesScreen({super.key});
@@ -70,7 +71,7 @@ class AddressesScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Icon(
-                                      Icons.location_on_outlined,
+                                      SolarIconsOutline.mapPoint,
                                       size: 20,
                                       color: theme.colorScheme.onSurface.withAlpha(180),
                                     ),
@@ -120,7 +121,7 @@ class AddressesScreen extends StatelessWidget {
                           Row(
                             children: [
                               Icon(
-                                Icons.phone_outlined,
+                                SolarIconsOutline.phone,
                                 size: 16,
                                 color: theme.colorScheme.onSurface.withAlpha(120),
                               ),
@@ -148,7 +149,7 @@ class AddressesScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: () {},
-                icon: const Icon(Icons.add),
+                icon: const Icon(SolarIconsOutline.plus),
                 label: const Text('Add New Address'),
               ),
             ),
