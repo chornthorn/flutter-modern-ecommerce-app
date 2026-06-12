@@ -4,7 +4,6 @@ import 'package:solar_icons/solar_icons.dart';
 
 import '../providers/bottom_nav_provider.dart';
 import 'cart_screen.dart';
-import 'favorites_screen.dart';
 import 'home_screen.dart';
 import 'profile_screen.dart';
 import 'shop_screen.dart';
@@ -15,7 +14,6 @@ class MainScreen extends StatelessWidget {
   static const List<Widget> _pages = [
     HomeScreen(),
     ShopScreen(),
-    FavoritesScreen(),
     CartScreen(),
     ProfileScreen(),
   ];
@@ -23,7 +21,6 @@ class MainScreen extends StatelessWidget {
   static const List<_NavItem> _navItems = [
     _NavItem(icon: SolarIconsOutline.home, activeIcon: SolarIconsOutline.home, label: 'Home'),
     _NavItem(icon: SolarIconsOutline.shop, activeIcon: SolarIconsOutline.shop, label: 'Shop'),
-    _NavItem(icon: SolarIconsOutline.heart, activeIcon: SolarIconsOutline.heart, label: 'Favorites'),
     _NavItem(icon: SolarIconsOutline.cart, activeIcon: SolarIconsOutline.cart, label: 'Cart'),
     _NavItem(icon: SolarIconsOutline.user, activeIcon: SolarIconsOutline.user, label: 'Profile'),
   ];

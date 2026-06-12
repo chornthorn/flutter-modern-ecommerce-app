@@ -6,6 +6,7 @@ import '../models/category.dart';
 import '../models/product.dart';
 import '../providers/product_provider.dart';
 import '../widgets/cart_badge.dart';
+import '../widgets/category_chip.dart';
 import '../widgets/product_card.dart';
 
 class ShopScreen extends StatefulWidget {
@@ -34,7 +35,9 @@ class _ShopScreenState extends State<ShopScreen> {
   List<_CategoryItem> _categoryItems(List<Category> categories) {
     return [
       const _CategoryItem(id: null, name: 'All', iconName: 'apps'),
-      ...categories.map((c) => _CategoryItem(id: c.id, name: c.name, iconName: c.iconName)),
+      ...categories.map(
+        (c) => _CategoryItem(id: c.id, name: c.name, iconName: c.iconName),
+      ),
     ];
   }
 
@@ -107,28 +110,22 @@ class _ShopScreenState extends State<ShopScreen> {
                 ),
               ),
             ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              sliver: SliverGrid(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 12,
-                  crossAxisSpacing: 12,
-                  childAspectRatio: 1,
-                ),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 52,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  itemCount: _categoryItems(categories).length,
+                  itemBuilder: (context, index) {
                     final items = _categoryItems(categories);
                     final item = items[index];
-                    final isSelected = item.id == selectedCategoryId;
-
-                    return _CategoryGridItem(
-                      item: item,
-                      isSelected: isSelected,
+                    return CategoryChip(
+                      category: item.toCategory(),
+                      isSelected: item.id == selectedCategoryId,
                       onTap: () => productProvider.selectCategory(item.id),
                     );
                   },
-                  childCount: _categoryItems(categories).length,
                 ),
               ),
             ),
@@ -295,70 +292,12 @@ class _CategoryItem {
     required this.name,
     required this.iconName,
   });
-}
 
-class _CategoryGridItem extends StatelessWidget {
-  final _CategoryItem item;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  const _CategoryGridItem({
-    required this.item,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        decoration: BoxDecoration(
-          color: isSelected ? Colors.black : theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: isSelected
-                ? Colors.black
-                : theme.colorScheme.onSurface.withAlpha(30),
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              _parseIcon(item.iconName),
-              size: 28,
-              color: isSelected ? Colors.white : theme.colorScheme.onSurface,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              item.name,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: isSelected ? Colors.white : theme.colorScheme.onSurface,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  IconData _parseIcon(String iconName) {
-    return switch (iconName) {
-      'phone_android' => SolarIconsOutline.smartphone,
-      'checkroom' => SolarIconsOutline.hanger,
-      'chair' => SolarIconsOutline.chair,
-      'sports_basketball' => SolarIconsOutline.basketball,
-      'menu_book' => SolarIconsOutline.book,
-      'brush' => SolarIconsOutline.palette,
-      'apps' => SolarIconsOutline.widget,
-      _ => SolarIconsOutline.widget,
-    };
-  }
+  Category toCategory() => Category(
+        id: id ?? 'all',
+        name: name,
+        iconName: iconName,
+      );
 }
 
 class _PromoBanner extends StatelessWidget {

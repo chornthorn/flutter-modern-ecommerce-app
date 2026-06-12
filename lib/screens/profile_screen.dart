@@ -96,6 +96,7 @@ class ProfileScreen extends StatelessWidget {
                     value: '5',
                     label: 'Favorites',
                     theme: theme,
+                    onTap: () => Navigator.of(context).pushNamed('/favorites'),
                   ),
                   const SizedBox(width: 12),
                   _StatCard(
@@ -186,18 +187,23 @@ class _StatCard extends StatelessWidget {
   final String value;
   final String label;
   final ThemeData theme;
+  final VoidCallback? onTap;
 
   const _StatCard({
     required this.value,
     required this.label,
     required this.theme,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
           color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(16),
@@ -223,8 +229,9 @@ class _StatCard extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }
 
 class _ProfileListTile extends StatelessWidget {
