@@ -5,6 +5,7 @@ import 'models/product.dart';
 import 'screens/addresses_screen.dart';
 import 'screens/cart_screen.dart';
 import 'screens/checkout_screen.dart';
+import 'screens/favorites_screen.dart';
 import 'screens/forgot_password_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/main_screen.dart';
@@ -50,6 +51,11 @@ class AppRouter {
       case '/cart':
         return MaterialPageRoute(
           builder: (_) => const CartScreen(),
+          settings: settings,
+        );
+      case '/favorites':
+        return MaterialPageRoute(
+          builder: (_) => const FavoritesScreen(),
           settings: settings,
         );
       case '/checkout':

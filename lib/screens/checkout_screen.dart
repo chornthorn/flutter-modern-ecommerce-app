@@ -4,9 +4,14 @@ import 'package:solar_icons/solar_icons.dart';
 
 import '../providers/cart_provider.dart';
 
-class CheckoutScreen extends StatelessWidget {
+class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key});
 
+  @override
+  State<CheckoutScreen> createState() => _CheckoutScreenState();
+}
+
+class _CheckoutScreenState extends State<CheckoutScreen> {
   static const List<Map<String, String>> _addresses = [
     {
       'label': 'Home',
@@ -29,6 +34,9 @@ class CheckoutScreen extends StatelessWidget {
     },
   ];
 
+  int _selectedAddressIndex = 0;
+  int _selectedPaymentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -49,42 +57,53 @@ class CheckoutScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _SectionTitle(title: 'Shipping Address'),
+              _SectionHeader(
+                title: 'Shipping Address',
+                onAdd: () => Navigator.of(context).pushNamed('/addresses'),
+              ),
               const SizedBox(height: 12),
-              ..._addresses.asMap().entries.map((entry) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: _SelectableCard(
-                    isSelected: entry.key == 0,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          entry.value['label']!,
-                          style: theme.textTheme.bodyLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: _addresses.asMap().entries.map((entry) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: _SelectableCard(
+                      isSelected: entry.key == _selectedAddressIndex,
+                      onTap: () => setState(() => _selectedAddressIndex = entry.key),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            entry.value['label']!,
+                            style: theme.textTheme.bodyLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          entry.value['address']!,
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.colorScheme.onSurface.withAlpha(150),
+                          const SizedBox(height: 4),
+                          Text(
+                            entry.value['address']!,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onSurface.withAlpha(150),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                }).toList(),
+              ),
               const SizedBox(height: 24),
-              _SectionTitle(title: 'Payment Method'),
+              _SectionHeader(
+                title: 'Payment Method',
+                onAdd: () => Navigator.of(context).pushNamed('/payment-methods'),
+              ),
               const SizedBox(height: 12),
               ..._paymentMethods.asMap().entries.map((entry) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 12),
                   child: _SelectableCard(
-                    isSelected: entry.key == 0,
+                    isSelected: entry.key == _selectedPaymentIndex,
+                    onTap: () => setState(() => _selectedPaymentIndex = entry.key),
                     child: Row(
                       children: [
                         Container(
@@ -195,12 +214,49 @@ class _SectionTitle extends StatelessWidget {
   }
 }
 
+class _SectionHeader extends StatelessWidget {
+  final String title;
+  final VoidCallback onAdd;
+
+  const _SectionHeader({
+    required this.title,
+    required this.onAdd,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        IconButton(
+          onPressed: onAdd,
+          icon: const Icon(SolarIconsOutline.addCircle),
+          style: IconButton.styleFrom(
+            foregroundColor: theme.colorScheme.onSurface,
+          ),
+          tooltip: 'Add new',
+        ),
+      ],
+    );
+  }
+}
+
 class _SelectableCard extends StatelessWidget {
   final bool isSelected;
+  final VoidCallback? onTap;
   final Widget child;
 
   const _SelectableCard({
     required this.isSelected,
+    this.onTap,
     required this.child,
   });
 
@@ -208,17 +264,21 @@ class _SelectableCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isSelected ? Colors.black : theme.colorScheme.onSurface.withAlpha(20),
-          width: isSelected ? 2 : 1,
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isSelected ? Colors.black : theme.colorScheme.onSurface.withAlpha(20),
+            width: isSelected ? 2 : 1,
+          ),
         ),
+        child: child,
       ),
-      child: child,
     );
   }
 }
