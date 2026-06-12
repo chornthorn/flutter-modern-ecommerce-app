@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 
+import 'models/order.dart';
 import 'models/product.dart';
+import 'screens/addresses_screen.dart';
 import 'screens/cart_screen.dart';
+import 'screens/checkout_screen.dart';
+import 'screens/forgot_password_screen.dart';
+import 'screens/login_screen.dart';
 import 'screens/main_screen.dart';
+import 'screens/order_detail_screen.dart';
+import 'screens/order_history_screen.dart';
+import 'screens/order_success_screen.dart';
+import 'screens/payment_methods_screen.dart';
 import 'screens/product_detail_screen.dart';
 import 'screens/product_list_screen.dart';
+import 'screens/search_screen.dart';
+import 'screens/settings_screen.dart';
+import 'screens/signup_screen.dart';
 
 class AppRouter {
   AppRouter._();
@@ -14,6 +26,11 @@ class AppRouter {
       case '/':
         return MaterialPageRoute(
           builder: (_) => const MainScreen(),
+          settings: settings,
+        );
+      case '/search':
+        return MaterialPageRoute(
+          builder: (_) => const SearchScreen(),
           settings: settings,
         );
       case '/product-list':
@@ -33,6 +50,65 @@ class AppRouter {
       case '/cart':
         return MaterialPageRoute(
           builder: (_) => const CartScreen(),
+          settings: settings,
+        );
+      case '/checkout':
+        return MaterialPageRoute(
+          builder: (_) => const CheckoutScreen(),
+          settings: settings,
+        );
+      case '/order-success':
+        return MaterialPageRoute(
+          builder: (_) => const OrderSuccessScreen(),
+          settings: settings,
+        );
+      case '/order-history':
+        return MaterialPageRoute(
+          builder: (_) => const OrderHistoryScreen(),
+          settings: settings,
+        );
+      case '/order-detail':
+        final order = settings.arguments;
+        if (order is Order) {
+          return MaterialPageRoute(
+            builder: (_) => OrderDetailScreen(order: order),
+            settings: settings,
+          );
+        }
+        return _errorRoute(settings, 'Missing or invalid Order argument');
+      case '/orders':
+        return MaterialPageRoute(
+          builder: (_) => const OrderHistoryScreen(),
+          settings: settings,
+        );
+      case '/addresses':
+        return MaterialPageRoute(
+          builder: (_) => const AddressesScreen(),
+          settings: settings,
+        );
+      case '/payment-methods':
+        return MaterialPageRoute(
+          builder: (_) => const PaymentMethodsScreen(),
+          settings: settings,
+        );
+      case '/settings':
+        return MaterialPageRoute(
+          builder: (_) => const SettingsScreen(),
+          settings: settings,
+        );
+      case '/login':
+        return MaterialPageRoute(
+          builder: (_) => const LoginScreen(),
+          settings: settings,
+        );
+      case '/signup':
+        return MaterialPageRoute(
+          builder: (_) => const SignUpScreen(),
+          settings: settings,
+        );
+      case '/forgot-password':
+        return MaterialPageRoute(
+          builder: (_) => const ForgotPasswordScreen(),
           settings: settings,
         );
       default:

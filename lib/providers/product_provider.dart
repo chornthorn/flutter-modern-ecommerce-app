@@ -11,6 +11,7 @@ class ProductProvider extends ChangeNotifier {
 
   String? _selectedCategoryId;
   String _searchQuery = '';
+  final List<String> _recentSearches = [];
 
   List<Product> get products => _products;
 
@@ -19,6 +20,8 @@ class ProductProvider extends ChangeNotifier {
   String? get selectedCategoryId => _selectedCategoryId;
 
   String get searchQuery => _searchQuery;
+
+  List<String> get recentSearches => List.unmodifiable(_recentSearches);
 
   Set<String> get favoriteIds => Set.unmodifiable(_favoriteIds);
 
@@ -29,6 +32,27 @@ class ProductProvider extends ChangeNotifier {
 
   void setSearchQuery(String query) {
     _searchQuery = query;
+    notifyListeners();
+  }
+
+  void addRecentSearch(String query) {
+    final normalized = query.trim();
+    if (normalized.isEmpty) return;
+    _recentSearches.remove(normalized);
+    _recentSearches.insert(0, normalized);
+    if (_recentSearches.length > 8) {
+      _recentSearches.removeLast();
+    }
+    notifyListeners();
+  }
+
+  void removeRecentSearch(String query) {
+    _recentSearches.remove(query);
+    notifyListeners();
+  }
+
+  void clearRecentSearches() {
+    _recentSearches.clear();
     notifyListeners();
   }
 

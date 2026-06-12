@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () => Navigator.of(context).pushNamed('/settings'),
                     icon: const Icon(Icons.settings_outlined),
                   ),
                 ],
@@ -115,22 +115,22 @@ class ProfileScreen extends StatelessWidget {
               _ProfileListTile(
                 icon: Icons.shopping_bag_outlined,
                 title: 'My Orders',
-                onTap: () {},
+                onTap: () => Navigator.of(context).pushNamed('/orders'),
               ),
               _ProfileListTile(
                 icon: Icons.location_on_outlined,
                 title: 'Addresses',
-                onTap: () {},
+                onTap: () => Navigator.of(context).pushNamed('/addresses'),
               ),
               _ProfileListTile(
                 icon: Icons.payment_outlined,
                 title: 'Payment Methods',
-                onTap: () {},
+                onTap: () => Navigator.of(context).pushNamed('/payment-methods'),
               ),
               _ProfileListTile(
                 icon: Icons.notifications_outlined,
                 title: 'Notifications',
-                onTap: () {},
+                onTap: () => Navigator.of(context).pushNamed('/settings'),
               ),
               const SizedBox(height: 24),
               Text(
@@ -244,13 +244,13 @@ class _ProfileListTile extends StatelessWidget {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: (iconColor ?? theme.colorScheme.primary).withAlpha(20),
+                  color: const Color(0xFFF2F2F2),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
                   icon,
                   size: 20,
-                  color: iconColor ?? theme.colorScheme.primary,
+                  color: iconColor ?? Colors.black,
                 ),
               ),
               const SizedBox(width: 16),
