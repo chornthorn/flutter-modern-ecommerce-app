@@ -136,8 +136,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                     ),
                     secondary: Container(
-                      width: 40
-,
+                      width: 40,
                       height: 40,
                       decoration: BoxDecoration(
                         color: const Color(0xFFF2F2F2),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../models/order.dart';
 
@@ -13,6 +14,12 @@ class OrderDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    DateTime baseDate;
+    try {
+      baseDate = DateFormat('MMM d, y').parse(order.date);
+    } catch (_) {
+      baseDate = DateTime.now();
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -48,7 +55,7 @@ class OrderDetailScreen extends StatelessWidget {
               const SizedBox(height: 24),
               _SectionTitle(title: 'Status'),
               const SizedBox(height: 12),
-              _StatusTimeline(status: order.status),
+              _StatusTimeline(status: order.status, orderDate: baseDate),
               const SizedBox(height: 24),
               _SectionTitle(title: 'Items'),
               const SizedBox(height: 12),
@@ -200,15 +207,45 @@ class _StatusBadge extends StatelessWidget {
 
 class _StatusTimeline extends StatelessWidget {
   final String status;
+  final DateTime orderDate;
 
-  const _StatusTimeline({required this.status});
+  const _StatusTimeline({
+    required this.status,
+    required this.orderDate,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final steps = ['Ordered', 'Processing', 'Shipped', 'Delivered'];
+    final dateFormat = DateFormat('MMM d, h:mm a');
+    final steps = [
+      _TimelineStep(
+        title: 'Ordered',
+        subtitle: 'Order placed successfully',
+        icon: Icons.receipt_outlined,
+        time: orderDate.copyWith(hour: 9, minute: 0),
+      ),
+      _TimelineStep(
+        title: 'Processing',
+        subtitle: 'Order is being prepared',
+        icon: Icons.inventory_2_outlined,
+        time: orderDate.copyWith(hour: 14, minute: 30),
+      ),
+      _TimelineStep(
+        title: 'Shipped',
+        subtitle: 'Order is on the way',
+        icon: Icons.local_shipping_outlined,
+        time: orderDate.add(const Duration(days: 1)).copyWith(hour: 8, minute: 15),
+      ),
+      _TimelineStep(
+        title: 'Delivered',
+        subtitle: 'Order has been delivered',
+        icon: Icons.check_circle_outline,
+        time: orderDate.add(const Duration(days: 2)).copyWith(hour: 16, minute: 45),
+      ),
+    ];
     final activeIndex = switch (status) {
-      'Cancelled' => 0,
+      'Cancelled' => -1,
       'Processing' => 1,
       'Shipped' => 2,
       'Delivered' => 3,
@@ -216,7 +253,7 @@ class _StatusTimeline extends StatelessWidget {
     };
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
@@ -224,50 +261,88 @@ class _StatusTimeline extends StatelessWidget {
           color: theme.colorScheme.onSurface.withAlpha(20),
         ),
       ),
-      child: Row(
+      child: Column(
         children: steps.asMap().entries.map((entry) {
           final index = entry.key;
           final step = entry.value;
           final isActive = index <= activeIndex;
           final isLast = index == steps.length - 1;
 
-          return Expanded(
+          return IntrinsicHeight(
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Column(
+                  children: [
+                    Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        color: isActive ? Colors.black : theme.colorScheme.surface,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: isActive ? Colors.black : theme.colorScheme.onSurface.withAlpha(40),
+                          width: 1.5,
+                        ),
+                      ),
+                      child: Icon(
+                        step.icon,
+                        size: 16,
+                        color: isActive ? Colors.white : theme.colorScheme.onSurface.withAlpha(100),
+                      ),
+                    ),
+                    if (!isLast)
+                      Expanded(
+                        child: Container(
+                          width: 2,
+                          margin: const EdgeInsets.symmetric(vertical: 4),
+                          color: index < activeIndex
+                              ? Colors.black
+                              : theme.colorScheme.onSurface.withAlpha(40),
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(width: 16),
                 Expanded(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        width: 12,
-                        height: 12,
-                        decoration: BoxDecoration(
-                          color: isActive ? Colors.black : theme.colorScheme.onSurface.withAlpha(40),
-                          shape: BoxShape.circle,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            step.title,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
+                              color: isActive
+                                  ? theme.colorScheme.onSurface
+                                  : theme.colorScheme.onSurface.withAlpha(100),
+                            ),
+                          ),
+                          Text(
+                            dateFormat.format(step.time),
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: isActive
+                                  ? theme.colorScheme.onSurface.withAlpha(150)
+                                  : theme.colorScheme.onSurface.withAlpha(100),
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 2),
                       Text(
-                        step,
+                        step.subtitle,
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: isActive
-                              ? theme.colorScheme.onSurface
+                              ? theme.colorScheme.onSurface.withAlpha(150)
                               : theme.colorScheme.onSurface.withAlpha(100),
-                          fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
                         ),
-                        textAlign: TextAlign.center,
                       ),
+                      if (!isLast) const SizedBox(height: 24),
                     ],
                   ),
                 ),
-                if (!isLast)
-                  Expanded(
-                    child: Container(
-                      height: 2,
-                      color: index < activeIndex
-                          ? Colors.black
-                          : theme.colorScheme.onSurface.withAlpha(40),
-                    ),
-                  ),
               ],
             ),
           );
@@ -275,6 +350,20 @@ class _StatusTimeline extends StatelessWidget {
       ),
     );
   }
+}
+
+class _TimelineStep {
+  final String title;
+  final String subtitle;
+  final IconData icon;
+  final DateTime time;
+
+  const _TimelineStep({
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.time,
+  });
 }
 
 class _InfoCard extends StatelessWidget {

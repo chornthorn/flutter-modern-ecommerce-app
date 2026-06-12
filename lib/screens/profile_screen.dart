@@ -112,25 +112,34 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              _ProfileListTile(
-                icon: Icons.shopping_bag_outlined,
-                title: 'My Orders',
-                onTap: () => Navigator.of(context).pushNamed('/orders'),
-              ),
-              _ProfileListTile(
-                icon: Icons.location_on_outlined,
-                title: 'Addresses',
-                onTap: () => Navigator.of(context).pushNamed('/addresses'),
-              ),
-              _ProfileListTile(
-                icon: Icons.payment_outlined,
-                title: 'Payment Methods',
-                onTap: () => Navigator.of(context).pushNamed('/payment-methods'),
-              ),
-              _ProfileListTile(
-                icon: Icons.notifications_outlined,
-                title: 'Notifications',
-                onTap: () => Navigator.of(context).pushNamed('/settings'),
+              Card(
+                child: Column(
+                  children: [
+                    _ProfileListTile(
+                      icon: Icons.shopping_bag_outlined,
+                      title: 'My Orders',
+                      onTap: () => Navigator.of(context).pushNamed('/orders'),
+                    ),
+                    const Divider(height: 1, indent: 16, endIndent: 16),
+                    _ProfileListTile(
+                      icon: Icons.location_on_outlined,
+                      title: 'Addresses',
+                      onTap: () => Navigator.of(context).pushNamed('/addresses'),
+                    ),
+                    const Divider(height: 1, indent: 16, endIndent: 16),
+                    _ProfileListTile(
+                      icon: Icons.payment_outlined,
+                      title: 'Payment Methods',
+                      onTap: () => Navigator.of(context).pushNamed('/payment-methods'),
+                    ),
+                    const Divider(height: 1, indent: 16, endIndent: 16),
+                    _ProfileListTile(
+                      icon: Icons.settings_outlined,
+                      title: 'Settings',
+                      onTap: () => Navigator.of(context).pushNamed('/settings'),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 24),
               Text(
@@ -140,17 +149,29 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              _ProfileListTile(
-                icon: Icons.help_outline,
-                title: 'Help Center',
-                onTap: () {},
+              Card(
+                child: Column(
+                  children: [
+                    _ProfileListTile(
+                      icon: Icons.help_outline,
+                      title: 'Help Center',
+                      onTap: () {},
+                    ),
+                  ],
+                ),
               ),
-              _ProfileListTile(
-                icon: Icons.logout,
-                title: 'Logout',
-                textColor: theme.colorScheme.error,
-                iconColor: theme.colorScheme.error,
-                onTap: () {},
+              const SizedBox(height: 24),
+              Card(
+                child: _ProfileListTile(
+                  icon: Icons.logout,
+                  title: 'Logout',
+                  textColor: theme.colorScheme.error,
+                  iconColor: theme.colorScheme.error,
+                  onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/login',
+                    (route) => false,
+                  ),
+                ),
               ),
             ],
           ),
@@ -224,53 +245,32 @@ class _ProfileListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-          decoration: BoxDecoration(
-            color: theme.colorScheme.surface,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: theme.colorScheme.onSurface.withAlpha(20),
-            ),
-          ),
-          child: Row(
-            children: [
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF2F2F2),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Icon(
-                  icon,
-                  size: 20,
-                  color: iconColor ?? Colors.black,
-                ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Text(
-                  title,
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    color: textColor,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              Icon(
-                Icons.chevron_right,
-                color: theme.colorScheme.onSurface.withAlpha(120),
-              ),
-            ],
-          ),
+    return ListTile(
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          color: iconColor == null ? const Color(0xFFF2F2F2) : iconColor!.withAlpha(20),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Icon(
+          icon,
+          size: 20,
+          color: iconColor ?? theme.colorScheme.onSurface.withAlpha(180),
         ),
       ),
+      title: Text(
+        title,
+        style: theme.textTheme.bodyLarge?.copyWith(
+          color: textColor,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      trailing: Icon(
+        Icons.chevron_right,
+        color: theme.colorScheme.onSurface.withAlpha(120),
+      ),
+      onTap: onTap,
     );
   }
 }

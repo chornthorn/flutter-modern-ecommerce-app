@@ -61,15 +61,15 @@ class AppTheme {
           ),
         ),
       ),
-      cardTheme:  CardThemeData(
+      cardTheme: const CardThemeData(
         elevation: 0,
         color: surfaceColor,
         surfaceTintColor: Colors.transparent,
         shadowColor: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
-        margin: EdgeInsets.all(0),
+        margin: EdgeInsets.zero,
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
