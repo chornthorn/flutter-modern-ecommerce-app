@@ -3,7 +3,7 @@
 A modern, minimalist e-commerce mobile experience built with Flutter.
 
 <p align="center">
-  <img src="DemoOverview.png" alt="Minimal Store App Preview" width="280" />
+  <img src="DemoOverview.png" alt="Minimal Store App Preview" />
 </p>
 
 <p align="center">
