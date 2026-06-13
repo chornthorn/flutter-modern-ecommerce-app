@@ -106,7 +106,7 @@ class _PillarNavItem extends StatelessWidget {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 250),
           curve: Curves.easeInOut,
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
           decoration: BoxDecoration(
             color: isActive ? Colors.white : Colors.transparent,
             borderRadius: BorderRadius.circular(40),
