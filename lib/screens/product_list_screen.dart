@@ -5,7 +5,6 @@ import 'package:solar_icons/solar_icons.dart';
 import '../models/category.dart';
 import '../models/product.dart';
 import '../providers/product_provider.dart';
-import '../widgets/cart_badge.dart';
 import '../widgets/category_chip.dart';
 import '../widgets/product_card.dart';
 
@@ -97,7 +96,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
             productProvider.searchQuery,
           ),
         ),
-        actions: const [CartBadge()],
       ),
       body: CustomScrollView(
         slivers: [
@@ -167,55 +165,53 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     ),
                   ),
                   const Spacer(),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 10,
+                  PopupMenuButton<_SortOption>(
+                    initialValue: _sortOption,
+                    color: theme.colorScheme.primary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.primary,
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<_SortOption>(
-                        value: _sortOption,
-                        dropdownColor: theme.colorScheme.primary,
-                        icon: Icon(
-                          SolarIconsOutline.altArrowDown,
-                          color: theme.colorScheme.onPrimary,
-                          size: 18,
-                        ),
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onPrimary,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        onChanged: (value) {
-                          if (value != null) {
-                            setState(() => _sortOption = value);
-                          }
-                        },
-                        items: _SortOption.values.map((option) {
-                          return DropdownMenuItem<_SortOption>(
-                            value: option,
-                            child: Text(
-                              option.label,
-                              style: TextStyle(
-                                color: theme.colorScheme.onPrimary,
-                              ),
+                    onSelected: (value) => setState(() => _sortOption = value),
+                    itemBuilder: (context) {
+                      return _SortOption.values.map((option) {
+                        return PopupMenuItem<_SortOption>(
+                          value: option,
+                          child: Text(
+                            option.label,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onPrimary,
+                              fontWeight: FontWeight.w600,
                             ),
-                          );
-                        }).toList(),
-                        selectedItemBuilder: (context) {
-                          return _SortOption.values.map((option) {
-                            return Text(
-                              option.label,
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.onPrimary,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            );
-                          }).toList();
-                        },
+                          ),
+                        );
+                      }).toList();
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primary,
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            _sortOption.label,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onPrimary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          Icon(
+                            SolarIconsOutline.altArrowDown,
+                            color: theme.colorScheme.onPrimary,
+                            size: 18,
+                          ),
+                        ],
                       ),
                     ),
                   ),

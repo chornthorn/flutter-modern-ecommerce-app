@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:solar_icons/solar_icons.dart';
 
 import 'forgot_password_screen.dart';
+import '../services/onboarding_service.dart';
 import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -26,9 +27,11 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  void _login() {
+  Future<void> _login() async {
     if (_formKey.currentState?.validate() ?? false) {
-      Navigator.of(context).pushReplacementNamed('/');
+      await OnboardingService().completeOnboarding();
+      if (!mounted) return;
+      Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
     }
   }
 

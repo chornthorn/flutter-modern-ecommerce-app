@@ -257,17 +257,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               top: false,
               child: Container(
                 height: _actionBarHeight,
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.surface,
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(24),
-                  ),
-                  border: Border(
-                    top: BorderSide(
-                      color: theme.colorScheme.onSurface.withAlpha(20),
-                    ),
-                  ),
-                ),
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 child: Row(
                   children: [

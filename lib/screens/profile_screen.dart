@@ -136,6 +136,12 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     const Divider(height: 1, indent: 16, endIndent: 16),
                     _ProfileListTile(
+                      icon: SolarIconsOutline.bell,
+                      title: 'Notifications',
+                      onTap: () => Navigator.of(context).pushNamed('/notifications'),
+                    ),
+                    const Divider(height: 1, indent: 16, endIndent: 16),
+                    _ProfileListTile(
                       icon: SolarIconsOutline.settings,
                       title: 'Settings',
                       onTap: () => Navigator.of(context).pushNamed('/settings'),

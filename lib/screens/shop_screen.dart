@@ -5,7 +5,6 @@ import 'package:solar_icons/solar_icons.dart';
 import '../models/category.dart';
 import '../models/product.dart';
 import '../providers/product_provider.dart';
-import '../widgets/cart_badge.dart';
 import '../widgets/category_chip.dart';
 import '../widgets/product_card.dart';
 
@@ -58,17 +57,11 @@ class _ShopScreenState extends State<ShopScreen> {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Shop',
-                      style: theme.textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const CartBadge(),
-                  ],
+                child: Text(
+                  'Shop',
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -254,28 +247,42 @@ class _SortDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
+    return PopupMenuButton<_SortOption>(
+      initialValue: value,
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: theme.colorScheme.onSurface.withAlpha(30),
-        ),
       ),
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton<_SortOption>(
-          value: value,
-          icon: const Icon(SolarIconsOutline.altArrowDown, size: 18),
-          style: theme.textTheme.bodySmall,
+      onSelected: onChanged,
+      itemBuilder: (context) {
+        return _SortOption.values.map((option) {
+          return PopupMenuItem<_SortOption>(
+            value: option,
+            child: Text(
+              option.label,
+              style: theme.textTheme.bodySmall,
+            ),
+          );
+        }).toList();
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(12),
-          items: _SortOption.values.map((option) {
-            return DropdownMenuItem(
-              value: option,
-              child: Text(option.label),
-            );
-          }).toList(),
-          onChanged: onChanged,
+          border: Border.all(
+            color: theme.colorScheme.onSurface.withAlpha(30),
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              value.label,
+              style: theme.textTheme.bodySmall,
+            ),
+            const SizedBox(width: 4),
+            const Icon(SolarIconsOutline.altArrowDown, size: 18),
+          ],
         ),
       ),
     );

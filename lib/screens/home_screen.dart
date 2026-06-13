@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:solar_icons/solar_icons.dart';
 
 import '../providers/product_provider.dart';
-import '../widgets/cart_badge.dart';
 import '../widgets/category_chip.dart';
 import '../widgets/product_card.dart';
 import '../widgets/search_bar.dart';
@@ -28,44 +27,37 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: 72,
         titleSpacing: 0,
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Good morning, Alex',
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: theme.colorScheme.onSurface,
-                    ),
-                  ),
-                  Text(
-                    'Discover something new',
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurface.withAlpha(140),
-                    ),
-                  ),
-                ],
-              ),
-              CircleAvatar(
-                radius: 22,
-                backgroundColor: const Color(0xFFF2F2F2),
-                child: Icon(
-                  SolarIconsOutline.user,
+              Text(
+                'Good morning, Alex',
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
                   color: theme.colorScheme.onSurface,
+                ),
+              ),
+              Text(
+                'Discover something new',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurface.withAlpha(140),
                 ),
               ),
             ],
           ),
         ),
-        actions: const [CartBadge()],
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.of(context).pushNamed('/notifications'),
+            icon: const _NotificationBell(),
+          ),
+        ],
       ),
       body: SafeArea(
         top: true,
@@ -262,6 +254,50 @@ class _HeroBanner extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _NotificationBell extends StatelessWidget {
+  const _NotificationBell();
+
+  static const int _unreadCount = 2;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Icon(
+          SolarIconsOutline.bell,
+          color: theme.colorScheme.onSurface,
+        ),
+        if (_unreadCount > 0)
+          Positioned(
+            right: -2,
+            top: -2,
+            child: Container(
+              width: 16,
+              height: 16,
+              decoration: const BoxDecoration(
+                color: Colors.black,
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Text(
+                  '$_unreadCount',
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: Colors.white,
+                    fontSize: 9,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }

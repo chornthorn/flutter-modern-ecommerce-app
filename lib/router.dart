@@ -9,6 +9,8 @@ import 'screens/favorites_screen.dart';
 import 'screens/forgot_password_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/main_screen.dart';
+import 'screens/notifications_screen.dart';
+import 'screens/onboarding_screen.dart';
 import 'screens/order_detail_screen.dart';
 import 'screens/order_history_screen.dart';
 import 'screens/order_success_screen.dart';
@@ -18,12 +20,23 @@ import 'screens/product_list_screen.dart';
 import 'screens/search_screen.dart';
 import 'screens/settings_screen.dart';
 import 'screens/signup_screen.dart';
+import 'screens/welcome_screen.dart';
 
 class AppRouter {
   AppRouter._();
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case '/welcome':
+        return MaterialPageRoute(
+          builder: (_) => const WelcomeScreen(),
+          settings: settings,
+        );
+      case '/onboarding':
+        return MaterialPageRoute(
+          builder: (_) => const OnboardingScreen(),
+          settings: settings,
+        );
       case '/':
         return MaterialPageRoute(
           builder: (_) => const MainScreen(),
@@ -100,6 +113,11 @@ class AppRouter {
       case '/settings':
         return MaterialPageRoute(
           builder: (_) => const SettingsScreen(),
+          settings: settings,
+        );
+      case '/notifications':
+        return MaterialPageRoute(
+          builder: (_) => const NotificationsScreen(),
           settings: settings,
         );
       case '/login':
